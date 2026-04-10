@@ -1187,9 +1187,7 @@ function openPD(btn) {
     thumbsEl.appendChild(t);
   });
 
-  // WhatsApp link
-  const waMsg = encodeURIComponent(`Hi! I want to order:\n\n🛒 ${name}\n💰 Price: Rs ${parseInt(price).toLocaleString()}\n\nPlease confirm availability.`);
-  document.getElementById('pdWaBtn').href = `https://wa.me/923372626303?text=${waMsg}`;
+  // WhatsApp link (no separate WA link button; Buy Now button uses pdOpenBuyNow)
 
   // Add to Cart button
   document.getElementById('pdAddCart').onclick = () => {
@@ -1243,8 +1241,7 @@ function pdQty(delta) {
   pdQtyVal = Math.max(1, pdQtyVal + delta);
   document.getElementById('pdQtyNum').textContent = pdQtyVal;
   if (pdCurrentProduct) {
-    const waMsg = encodeURIComponent(`Hi! I want to order:\n\n🛒 ${pdCurrentProduct.name}\n🔢 Qty: ${pdQtyVal}\n💰 Total: Rs ${(pdCurrentProduct.price * pdQtyVal).toLocaleString()}\n\nPlease confirm availability.`);
-    document.getElementById('pdWaBtn').href = `https://wa.me/923372626303?text=${waMsg}`;
+    // Qty updated — Buy Now button uses pdOpenBuyNow which reads pdQtyVal
   }
 }
 
